@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kenjis\CI4\AttributeRoutes;
 
 use Attribute;
+use RuntimeException;
 
 use function array_keys;
 use function array_values;
@@ -28,7 +29,7 @@ class Route
      */
     private array $options;
 
-    private string $controllerMethod;
+    private ?string $controllerMethod;
 
     /**
      * @param string[]             $methods
@@ -61,7 +62,7 @@ class Route
                 $method,
                 $this->uri,
                 $this->controllerMethod,
-                $this->varExport($this->options, true)
+                $this->varExport($this->options)
             ) . "\n";
         }
 
@@ -75,11 +76,9 @@ class Route
      *
      * @param mixed $expression
      *
-     * @return string|null
-     *
      * @see https://www.php.net/manual/en/function.var-export.php
      */
-    private function varExport($expression, bool $return = false)
+    private function varExport($expression): string
     {
         $export = var_export($expression, true);
 
@@ -91,12 +90,10 @@ class Route
         ];
         $export = preg_replace(array_keys($patterns), array_values($patterns), $export);
 
-        if ((bool) $return) {
-            return $export;
+        if ($export === null) {
+            throw new RuntimeException('Failed to convert to short array syntax');
         }
 
-        echo $export;
-
-        return '';
+        return $export;
     }
 }
