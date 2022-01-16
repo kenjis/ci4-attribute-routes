@@ -10,7 +10,13 @@ $finder = Finder::create()
     ->exclude('build')
     ->append([__FILE__]);
 
-$overrides = [];
+$overrides = [
+    'global_namespace_import' => [
+        'import_constants' => true,
+        'import_functions' => true,
+        'import_classes'   => true,
+    ],
+];
 
 $options = [
     'finder'    => $finder,
