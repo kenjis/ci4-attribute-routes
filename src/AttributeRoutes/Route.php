@@ -6,6 +6,11 @@ namespace Kenjis\CI4\AttributeRoutes;
 
 use Attribute;
 
+use function array_keys;
+use function array_values;
+use function assert;
+use function preg_replace;
+use function sprintf;
 use function var_export;
 
 #[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
@@ -43,7 +48,7 @@ class Route
 
     public function asCode(): string
     {
-        \assert(
+        assert(
             $this->controllerMethod !== null,
             'You must set $controllerMethod with setControllerMethod().'
         );
@@ -51,7 +56,7 @@ class Route
         $code = '';
 
         foreach ($this->methods as $method) {
-            $code .= \sprintf(
+            $code .= sprintf(
                 '$routes->%s(\'%s\', \'%s\', %s);',
                 $method,
                 $this->uri,
@@ -76,7 +81,7 @@ class Route
      */
     private function varExport($expression, bool $return = false)
     {
-        $export = \var_export($expression, true);
+        $export = var_export($expression, true);
 
         $patterns = [
             '/array \(/'                            => '[',
@@ -84,7 +89,7 @@ class Route
             "/=>[ ]?\n[ ]+\\[/"                     => '=> [',
             "/([ ]*)(\\'[^\\']+\\') => ([\\[\\'])/" => '$1$2 => $3',
         ];
-        $export = \preg_replace(\array_keys($patterns), \array_values($patterns), $export);
+        $export = preg_replace(array_keys($patterns), array_values($patterns), $export);
 
         if ((bool) $return) {
             return $export;

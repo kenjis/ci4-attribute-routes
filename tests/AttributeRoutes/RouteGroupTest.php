@@ -11,9 +11,9 @@ final class RouteGroupTest extends TestCase
 {
     public function test(): void
     {
-        $name = 'api';
+        $name    = 'api';
         $options = ['filter' => 'api-auth'];
-        $group = new RouteGroup($name, $options);
+        $group   = new RouteGroup($name, $options);
 
         $this->assertSame($name, $group->getName());
         $this->assertSame($options, $group->getOptions());
