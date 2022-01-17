@@ -9,10 +9,10 @@ namespace Kenjis\CI4\AttributeRoutes;
  */
 final class RouteGroupTest extends TestCase
 {
-    public function test(): void
+    public function testGetNameAndGetOptions(): void
     {
-        $name    = 'api';
-        $options = ['filter' => 'api-auth'];
+        $name    = 'group';
+        $options = ['filter' => 'auth'];
         $group   = new RouteGroup($name, $options);
 
         $this->assertSame($name, $group->getName());
