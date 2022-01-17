@@ -6,6 +6,7 @@ namespace Kenjis\CI4\AttributeRoutes;
 
 use CodeIgniter\Config\Services;
 
+use function array_keys;
 use function array_merge;
 use function file_put_contents;
 
@@ -28,7 +29,7 @@ class RouteFileGenerator
     public function __construct(array $namespaces = [], string $routesFile = '')
     {
         if ($namespaces === []) {
-            $namespaces = Services::autoloader()->getNamespace();
+            $namespaces = array_keys(Services::autoloader()->getNamespace());
         }
 
         if ($routesFile === '') {
