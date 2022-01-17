@@ -58,7 +58,7 @@ class Route
 
         foreach ($this->methods as $method) {
             $code .= sprintf(
-                '$routes->%s(\'%s\', \'%s\', %s);',
+                "\$routes->%s('%s', '%s', %s);",
                 $method,
                 $this->uri,
                 $this->controllerMethod,
