@@ -21,6 +21,25 @@ final class RouteResourceTest extends TestCase
         $this->assertSame($options, $resource->getOptions());
     }
 
+    public function testSetOnlyAndGetOnly(): void
+    {
+        $name     = 'photos';
+        $resource = new RouteResource($name);
+
+        $resource->setOnly(['index', 'show']);
+
+        $this->assertSame(['index', 'show'], $resource->getOnly());
+    }
+
+    public function testIsValidMethod(): void
+    {
+        $name     = 'photos';
+        $resource = new RouteResource($name);
+
+        $this->assertFalse($resource->isValidMethod('bad'));
+        $this->assertTrue($resource->isValidMethod('index'));
+    }
+
     public function testAsCodeWithOptions(): void
     {
         $name     = 'photos';

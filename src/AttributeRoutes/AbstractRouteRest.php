@@ -63,11 +63,24 @@ abstract class AbstractRouteRest
     }
 
     /**
+     * @return string[]|null
+     */
+    public function getOnly(): ?array
+    {
+        return $this->only;
+    }
+
+    /**
      * @param class-string $controller
      */
     public function setController(string $controller): void
     {
         $this->controller = $controller;
+    }
+
+    public function isValidMethod(string $method): bool
+    {
+        return in_array($method, $this->validMethods, true);
     }
 
     /**
@@ -76,7 +89,7 @@ abstract class AbstractRouteRest
     public function setOnly(array $only): void
     {
         foreach ($only as $method) {
-            assert(in_array($method, $this->validMethods, true));
+            assert($this->isValidMethod($method));
         }
 
         if (count($only) === count($this->validMethods)) {
