@@ -3,3 +3,5 @@ parameters:
   paths:
     - src
     - tests
+  bootstrapFiles:
+    - vendor/codeigniter4/codeigniter4/system/Test/bootstrap.php
