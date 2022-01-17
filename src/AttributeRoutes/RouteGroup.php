@@ -6,15 +6,26 @@ namespace Kenjis\CI4\AttributeRoutes;
 
 use Attribute;
 
+use function preg_replace;
+use function sprintf;
+use function str_replace;
+
 #[Attribute(Attribute::TARGET_CLASS)]
 class RouteGroup
 {
+    use VarExportTrait;
+
     private string $name;
 
     /**
      * @var array<string, mixed>
      */
     private array $options;
+
+    /**
+     * @var Route[]
+     */
+    private array $routes;
 
     /**
      * @param array<string, mixed> $options
@@ -36,5 +47,41 @@ class RouteGroup
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    /**
+     * @param Route[] $routes
+     */
+    public function setRoutes(array $routes): void
+    {
+        $this->routes = $routes;
+    }
+
+    public function asCode(): string
+    {
+        $options = str_replace(
+            ["\n", '  ', ',]'],
+            ['', '', ']'],
+            $this->varExport($this->options)
+        );
+
+        $code = sprintf(
+            "\$routes->group('%s', %s, static function (\$routes) {",
+            $this->getName(),
+            $options
+        ) . "\n";
+
+        $routeCode = '';
+
+        foreach ($this->routes as $route) {
+            $routeCode .= $route->asCode();
+        }
+
+        $routeCode = preg_replace('/^/m', '    ', $routeCode);
+        $code .= $routeCode;
+
+        $code .= '});' . "\n";
+
+        return $code;
     }
 }
