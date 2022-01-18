@@ -1,8 +1,10 @@
 # CodeIgniter4 Attribute Routes
 
-This package generates Routes File from the Attribute Routes in your Controllers.
+This package generates a **Routes File** from the **Attribute Routes**å in your **Controllers**.
 
-You can set routes in your Controllers, and disable Auto Routing.
+- You can set routes in your Controllers, and disable **Auto Routing**.
+- It generates a Routes File, so, there is no extra overhead at runtime.
+- The generated Routes File can be used on PHP 7.3 production servers.
 
 ## Requirements
 
@@ -155,7 +157,9 @@ Show your routes with the `php spark routes` command, and check the order of the
 The first matched route is the one that is executed.
 The placeholders like `(.*)` or `([^/]+)` takes any characters or segment. So you have to move the routes like that to the bottom.
 
-Set the priority of the routes with `options`:
+In one controller, you can move the methods having such routes to the bottom.
+
+Or set the priority of the routes with `options`:
 ```php
 #[Route('news/(:segment)', methods: ['get'], options: ['priority' => 1])]
 ```
