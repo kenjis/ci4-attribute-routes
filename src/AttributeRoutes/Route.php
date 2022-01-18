@@ -43,7 +43,7 @@ class Route
 
     public function setControllerMethod(string $controllerMethod): void
     {
-        $this->controllerMethod = $controllerMethod . $this->getArgs();
+        $this->controllerMethod = '\\' . $controllerMethod . $this->getArgs();
     }
 
     /**

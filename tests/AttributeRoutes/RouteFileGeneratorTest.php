@@ -53,14 +53,14 @@ final class RouteFileGeneratorTest extends TestCase
 
         $expected = <<<'CODE'
             $routes->group('group', ['filter' => 'auth'], static function ($routes) {
-                $routes->get('a', 'Tests\Support\Controllers\GroupController::getA', [
+                $routes->get('a', '\Tests\Support\Controllers\GroupController::getA', [
                 ]);
-                $routes->post('a', 'Tests\Support\Controllers\GroupController::postA', [
+                $routes->post('a', '\Tests\Support\Controllers\GroupController::postA', [
                 ]);
             });
-            $routes->get('method/a', 'Tests\Support\Controllers\MethodController::getA', [
+            $routes->get('method/a', '\Tests\Support\Controllers\MethodController::getA', [
             ]);
-            $routes->get('method/b', 'Tests\Support\Controllers\MethodController::getB', [
+            $routes->get('method/b', '\Tests\Support\Controllers\MethodController::getB', [
             ]);
             $routes->presenter('presenter', ['controller' => 'Tests\Support\Controllers\PresenterController', 'only' => ['new', 'create', 'index', 'remove', 'delete']]);
             $routes->resource('photos', ['controller' => 'Tests\Support\Controllers\ResourceController', 'websafe' => 1, 'only' => ['new', 'create', 'index', 'show']]);
