@@ -69,4 +69,49 @@ final class RouteTest extends TestCase
             CODE;
         $this->assertSame($expected, $code);
     }
+
+    public function testPlaceholder(): void
+    {
+        $route = new Route('news/(:segment)', ['get']);
+        $route->setControllerMethod('App\Controllers\News::view');
+
+        $code = $route->asCode();
+
+        $expected = <<<'CODE'
+            $routes->get('news/(:segment)', 'App\Controllers\News::view/$1', [
+            ]);
+
+            CODE;
+        $this->assertSame($expected, $code);
+    }
+
+    public function testPlaceholdersConsecutive(): void
+    {
+        $route = new Route('products/([a-z]+)/(\d+)', ['get']);
+        $route->setControllerMethod('App\Controllers\Products::show');
+
+        $code = $route->asCode();
+
+        $expected = <<<'CODE'
+            $routes->get('products/([a-z]+)/(\d+)', 'App\Controllers\Products::show/$1/$2', [
+            ]);
+
+            CODE;
+        $this->assertSame($expected, $code);
+    }
+
+    public function testPlaceholdersApart(): void
+    {
+        $route = new Route('users/(:num)/gallery(:any)', ['get']);
+        $route->setControllerMethod('App\Controllers\Galleries::showUserGallery');
+
+        $code = $route->asCode();
+
+        $expected = <<<'CODE'
+            $routes->get('users/(:num)/gallery(:any)', 'App\Controllers\Galleries::showUserGallery/$1/$2', [
+            ]);
+
+            CODE;
+        $this->assertSame($expected, $code);
+    }
 }

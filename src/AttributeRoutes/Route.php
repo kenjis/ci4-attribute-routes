@@ -7,6 +7,8 @@ namespace Kenjis\CI4\AttributeRoutes;
 use Attribute;
 
 use function assert;
+use function count;
+use function preg_match_all;
 use function sprintf;
 
 #[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
@@ -17,7 +19,7 @@ class Route
     private string $uri;
 
     /**
-     * @var string[]
+     * @var string[] HTTP methods
      */
     private array $methods;
 
@@ -41,7 +43,26 @@ class Route
 
     public function setControllerMethod(string $controllerMethod): void
     {
-        $this->controllerMethod = $controllerMethod;
+        $this->controllerMethod = $controllerMethod . $this->getArgs();
+    }
+
+    /**
+     * Returns the path like `/$1/$2` for placeholders
+     */
+    private function getArgs(): string
+    {
+        preg_match_all('/\(.+?\)/', $this->uri, $matches);
+        $count = count($matches[0]);
+
+        $args = '';
+
+        if ($count > 0) {
+            for ($i = 1; $i <= $count; $i++) {
+                $args .= '/$' . $i;
+            }
+        }
+
+        return $args;
     }
 
     public function asCode(): string
