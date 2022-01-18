@@ -137,7 +137,7 @@ class PresenterController extends ResourcePresenter
 
 ## Trouble Shooting
 
-### No routes in the generate routes file
+### No routes in the generated routes file
 
 You must import the attribute classes in your controllers.
 
