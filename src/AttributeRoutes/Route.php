@@ -8,6 +8,7 @@ use Attribute;
 
 use function assert;
 use function count;
+use function is_countable;
 use function preg_match_all;
 use function sprintf;
 
@@ -28,7 +29,7 @@ class Route
      */
     private array $options;
 
-    private ?string $controllerMethod;
+    private ?string $controllerMethod = null;
 
     /**
      * @param string[]             $methods
@@ -52,7 +53,7 @@ class Route
     private function getArgs(): string
     {
         preg_match_all('/\(.+?\)/', $this->uri, $matches);
-        $count = count($matches[0]);
+        $count = is_countable($matches[0]) ? count($matches[0]) : 0;
 
         $args = '';
 

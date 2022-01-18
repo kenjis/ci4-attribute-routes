@@ -14,13 +14,9 @@ final class RouteFileGeneratorTest extends TestCase
     /**
      * @var string[]
      */
-    private $namespaces = ['Tests\Support'];
+    private array $namespaces = ['Tests\Support'];
 
-    /**
-     * @var string
-     */
-    private $routesFile = __DIR__ . '/RoutesFromAttribute.php';
-
+    private string $routesFile = __DIR__ . '/RoutesFromAttribute.php';
     private RouteFileGenerator $generator;
 
     protected function setUp(): void

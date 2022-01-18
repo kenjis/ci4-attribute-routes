@@ -7,7 +7,6 @@ namespace Kenjis\CI4\AttributeRoutes;
 use CodeIgniter\Config\Services;
 
 use function array_keys;
-use function array_merge;
 use function file_put_contents;
 
 use const LOCK_EX;
@@ -51,7 +50,7 @@ class RouteFileGenerator
         $routes = [];
 
         foreach ($controllers as $controller) {
-            $routes = array_merge($routes, $this->reader->getRoutes($controller));
+            $routes = [...$routes, ...$this->reader->getRoutes($controller)];
         }
 
         return $routes;

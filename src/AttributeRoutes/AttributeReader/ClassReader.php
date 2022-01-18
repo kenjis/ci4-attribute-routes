@@ -9,8 +9,6 @@ use Kenjis\CI4\AttributeRoutes\RoutePresenter;
 use Kenjis\CI4\AttributeRoutes\RouteResource;
 use ReflectionClass;
 
-use function count;
-
 class ClassReader
 {
     /**
@@ -59,7 +57,7 @@ class ClassReader
 
         $attributes = $reflection->getAttributes($route);
 
-        if (count($attributes) === 0) {
+        if ($attributes === []) {
             return [];
         }
 

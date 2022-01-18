@@ -7,8 +7,6 @@ namespace Kenjis\CI4\AttributeRoutes\AttributeReader;
 use Kenjis\CI4\AttributeRoutes\Route;
 use ReflectionClass;
 
-use function count;
-
 class MethodReader
 {
     /**
@@ -25,7 +23,7 @@ class MethodReader
         foreach ($reflection->getMethods() as $method) {
             $attributes = $method->getAttributes(Route::class);
 
-            if (count($attributes) === 0) {
+            if ($attributes === []) {
                 continue;
             }
 

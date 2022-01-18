@@ -26,12 +26,12 @@ abstract class AbstractRouteRest
     /**
      * @var class-string|null
      */
-    protected ?string $controller;
+    protected ?string $controller = null;
 
     /**
      * @var string[]|null
      */
-    protected ?array $only;
+    protected ?array $only = null;
 
     /**
      * @var string[]
