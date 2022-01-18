@@ -47,7 +47,7 @@ class ClassReader
      * @param class-string    $class Controller class
      * @param class-string<T> $route Route class
      *
-     * @return T[]
+     * @return list<T>
      *
      * @template T
      */
