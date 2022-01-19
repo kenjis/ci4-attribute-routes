@@ -1,10 +1,23 @@
 # CodeIgniter4 Attribute Routes
 
-This package generates a **Routes File** from the **Attribute Routes**å in your **Controllers**.
+This package generates a **Routes File** from the **Attribute Routes** in your **Controllers**.
 
 - You can set routes in your Controllers, and disable **Auto Routing**.
 - It generates a Routes File, so, there is no extra overhead at runtime.
 - The generated Routes File can be used on PHP 7.3 production servers.
+
+```php
+use Kenjis\CI4\AttributeRoutes\Route;
+
+class SomeController extends BaseController
+{
+    #[Route('path', methods: ['get'])]
+    public function index()
+    {
+        ...
+    }
+}
+```
 
 ## Requirements
 
