@@ -13,7 +13,7 @@ use function preg_match_all;
 use function sprintf;
 
 #[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
-class Route
+final class Route
 {
     use VarExportTrait;
 

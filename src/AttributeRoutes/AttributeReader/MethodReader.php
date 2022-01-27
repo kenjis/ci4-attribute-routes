@@ -7,7 +7,7 @@ namespace Kenjis\CI4\AttributeRoutes\AttributeReader;
 use Kenjis\CI4\AttributeRoutes\Route;
 use ReflectionClass;
 
-class MethodReader
+final class MethodReader
 {
     /**
      * @param class-string $class

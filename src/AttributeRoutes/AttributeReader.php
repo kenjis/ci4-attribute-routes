@@ -11,7 +11,7 @@ use ReflectionMethod;
 
 use function array_merge;
 
-class AttributeReader
+final class AttributeReader
 {
     private ClassReader $classReader;
     private MethodReader $methodReader;

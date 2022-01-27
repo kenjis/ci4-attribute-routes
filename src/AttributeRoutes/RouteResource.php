@@ -7,7 +7,7 @@ namespace Kenjis\CI4\AttributeRoutes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-class RouteResource extends AbstractRouteRest
+final class RouteResource extends AbstractRouteRest
 {
     /**
      * @var string[]

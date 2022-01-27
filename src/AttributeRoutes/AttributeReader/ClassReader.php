@@ -9,7 +9,7 @@ use Kenjis\CI4\AttributeRoutes\RoutePresenter;
 use Kenjis\CI4\AttributeRoutes\RouteResource;
 use ReflectionClass;
 
-class ClassReader
+final class ClassReader
 {
     /**
      * @param class-string $class

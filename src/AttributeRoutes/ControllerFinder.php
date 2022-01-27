@@ -9,7 +9,7 @@ use CodeIgniter\Config\Services;
 
 use function is_file;
 
-class ControllerFinder
+final class ControllerFinder
 {
     /**
      * @var string[]

@@ -11,7 +11,7 @@ use function file_put_contents;
 
 use const LOCK_EX;
 
-class RouteFileGenerator
+final class RouteFileGenerator
 {
     private ControllerFinder $finder;
     private AttributeReader $reader;

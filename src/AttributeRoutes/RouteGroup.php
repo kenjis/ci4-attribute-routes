@@ -11,7 +11,7 @@ use function sprintf;
 use function str_replace;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-class RouteGroup
+final class RouteGroup
 {
     use VarExportTrait;
 
