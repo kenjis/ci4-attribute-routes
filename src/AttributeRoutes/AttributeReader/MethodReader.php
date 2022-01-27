@@ -14,7 +14,7 @@ final class MethodReader
      *
      * @return Route[]
      */
-    public function getMethodRoutes(string $class): array
+    public function getRoutes(string $class): array
     {
         $reflection = new ReflectionClass($class);
 

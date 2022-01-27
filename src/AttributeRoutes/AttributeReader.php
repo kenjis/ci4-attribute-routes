@@ -38,7 +38,7 @@ final class AttributeReader
             return $routes;
         }
 
-        return $this->methodReader->getMethodRoutes($class);
+        return $this->methodReader->getRoutes($class);
     }
 
     /**
@@ -51,7 +51,7 @@ final class AttributeReader
         $groups = $this->classReader->getGroupRoutes($class);
 
         foreach ($groups as $group) {
-            $methodRoutes = $this->methodReader->getMethodRoutes($class);
+            $methodRoutes = $this->methodReader->getRoutes($class);
             $group->setRoutes($methodRoutes);
         }
 

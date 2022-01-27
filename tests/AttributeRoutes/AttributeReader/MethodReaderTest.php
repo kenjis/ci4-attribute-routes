@@ -17,7 +17,7 @@ final class MethodReaderTest extends TestCase
     {
         $reader = new MethodReader();
 
-        $routes = $reader->getMethodRoutes(MethodController::class);
+        $routes = $reader->getRoutes(MethodController::class);
 
         $this->assertCount(2, $routes);
         $this->assertInstanceOf(Route::class, $routes[0]);
