@@ -31,10 +31,8 @@ final class RouteGroupTest extends TestCase
 
         $expected = <<<'CODE'
             $routes->group('group', [], static function ($routes) {
-                $routes->get('a', '\Tests\Support\Controllers\GroupController::getA', [
-                ]);
-                $routes->post('a', '\Tests\Support\Controllers\GroupController::postA', [
-                ]);
+                $routes->get('a', '\Tests\Support\Controllers\GroupController::getA');
+                $routes->post('a', '\Tests\Support\Controllers\GroupController::postA');
             });
 
             CODE;
@@ -67,10 +65,8 @@ final class RouteGroupTest extends TestCase
 
         $expected = <<<'CODE'
             $routes->group('group', ['filter' => 'auth'], static function ($routes) {
-                $routes->get('a', '\Tests\Support\Controllers\GroupController::getA', [
-                ]);
-                $routes->post('a', '\Tests\Support\Controllers\GroupController::postA', [
-                ]);
+                $routes->get('a', '\Tests\Support\Controllers\GroupController::getA');
+                $routes->post('a', '\Tests\Support\Controllers\GroupController::postA');
             });
 
             CODE;

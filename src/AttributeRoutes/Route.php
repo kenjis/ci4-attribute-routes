@@ -76,6 +76,17 @@ final class Route
         $code = '';
 
         foreach ($this->methods as $method) {
+            if ($this->options === []) {
+                $code .= sprintf(
+                    "\$routes->%s('%s', '%s');",
+                    $method,
+                    $this->uri,
+                    $this->controllerMethod,
+                ) . "\n";
+
+                continue;
+            }
+
             $code .= sprintf(
                 "\$routes->%s('%s', '%s', %s);",
                 $method,

@@ -19,8 +19,7 @@ final class RouteTest extends TestCase
         $code = $route->asCode();
 
         $expected = <<<'CODE'
-            $routes->get('method/index', '\Tests\Support\Controllers\MethodController::getIndex', [
-            ]);
+            $routes->get('method/index', '\Tests\Support\Controllers\MethodController::getIndex');
 
             CODE;
         $this->assertSame($expected, $code);
@@ -34,10 +33,8 @@ final class RouteTest extends TestCase
         $code = $route->asCode();
 
         $expected = <<<'CODE'
-            $routes->get('method/test', '\Tests\Support\Controllers\MethodController::test', [
-            ]);
-            $routes->post('method/test', '\Tests\Support\Controllers\MethodController::test', [
-            ]);
+            $routes->get('method/test', '\Tests\Support\Controllers\MethodController::test');
+            $routes->post('method/test', '\Tests\Support\Controllers\MethodController::test');
 
             CODE;
         $this->assertSame($expected, $code);
@@ -78,8 +75,7 @@ final class RouteTest extends TestCase
         $code = $route->asCode();
 
         $expected = <<<'CODE'
-            $routes->get('news/(:segment)', '\App\Controllers\News::view/$1', [
-            ]);
+            $routes->get('news/(:segment)', '\App\Controllers\News::view/$1');
 
             CODE;
         $this->assertSame($expected, $code);
@@ -93,8 +89,7 @@ final class RouteTest extends TestCase
         $code = $route->asCode();
 
         $expected = <<<'CODE'
-            $routes->get('products/([a-z]+)/(\d+)', '\App\Controllers\Products::show/$1/$2', [
-            ]);
+            $routes->get('products/([a-z]+)/(\d+)', '\App\Controllers\Products::show/$1/$2');
 
             CODE;
         $this->assertSame($expected, $code);
@@ -108,8 +103,7 @@ final class RouteTest extends TestCase
         $code = $route->asCode();
 
         $expected = <<<'CODE'
-            $routes->get('users/(:num)/gallery(:any)', '\App\Controllers\Galleries::showUserGallery/$1/$2', [
-            ]);
+            $routes->get('users/(:num)/gallery(:any)', '\App\Controllers\Galleries::showUserGallery/$1/$2');
 
             CODE;
         $this->assertSame($expected, $code);
