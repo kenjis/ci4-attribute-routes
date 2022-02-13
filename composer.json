@@ -12,6 +12,10 @@
         }
     ],
     "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        },
         "preferred-install": {
             "codeigniter4/codeigniter4": "source",
             "*": "dist"
