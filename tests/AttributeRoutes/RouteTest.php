@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kenjis\CI4\AttributeRoutes;
 
+use Kenjis\CI4\AttributeRoutes\Exception\LogicException;
 use Tests\Support\Controllers\MethodController;
 
 /**
@@ -107,5 +108,14 @@ final class RouteTest extends TestCase
 
             CODE;
         $this->assertSame($expected, $code);
+    }
+
+    public function testCannotUseAdd(): void
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('$routes->add() is not secure.');
+
+        $route = new Route('method/index', ['add']);
+        $route->setControllerMethod(MethodController::class . '::getIndex');
     }
 }

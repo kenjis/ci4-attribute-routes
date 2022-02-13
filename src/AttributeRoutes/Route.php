@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Kenjis\CI4\AttributeRoutes;
 
 use Attribute;
+use Kenjis\CI4\AttributeRoutes\Exception\LogicException;
 
 use function assert;
 use function count;
+use function in_array;
 use function is_countable;
 use function preg_match_all;
 use function sprintf;
@@ -37,9 +39,38 @@ final class Route
      */
     public function __construct(string $uri, array $methods = [], array $options = [])
     {
+        $this->validateMethods($methods);
+
         $this->uri     = $uri;
         $this->methods = $methods;
         $this->options = $options;
+    }
+
+    /**
+     * @param string[] $methods
+     */
+    private function validateMethods(array $methods): void
+    {
+        $validMethods = [
+            'get',
+            'post',
+            'put',
+            'patch',
+            'delete',
+            'options',
+            'head',
+            'cli',
+        ];
+
+        foreach ($methods as $method) {
+            if (! in_array($method, $validMethods, true)) {
+                if ($method === 'add') {
+                    throw new LogicException('$routes->add() is not secure. Do not use.');
+                }
+
+                throw new LogicException(sprintf('Invalid method: %s', $method));
+            }
+        }
     }
 
     public function setControllerMethod(string $controllerMethod): void
