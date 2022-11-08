@@ -80,7 +80,7 @@ final class RouteGroup
         $routeCode = preg_replace('/^/m', '    ', $routeCode);
         $code .= $routeCode;
 
-        $code .= '});' . "\n";
+        $code .= "});\n";
 
         return $code;
     }
