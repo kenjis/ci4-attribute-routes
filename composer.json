@@ -48,7 +48,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Support\\": "tests/_support",
             "Kenjis\\CI4\\AttributeRoutes\\": "tests/AttributeRoutes"
         }
     },
