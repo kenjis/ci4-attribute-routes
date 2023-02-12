@@ -7,46 +7,32 @@ namespace Kenjis\CI4\AttributeRoutes\Commands;
 use CodeIgniter\Test\Filters\CITestStreamFilter;
 use Kenjis\CI4\AttributeRoutes\TestCase;
 
-use function assert;
 use function is_file;
-use function is_resource;
 use function str_replace;
-use function stream_filter_append;
-use function stream_filter_remove;
 use function unlink;
-
-use const STDERR;
-use const STDOUT;
 
 /**
  * @internal
  */
 final class AttributeRoutesTest extends TestCase
 {
-    /**
-     * @var false|resource
-     */
-    protected $streamFilter;
-
     private string $routesFile = 'Config/RoutesFromAttribute.php';
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        CITestStreamFilter::$buffer = '';
-
-        $this->streamFilter = stream_filter_append(STDOUT, 'CITestStreamFilter');
-        $this->streamFilter = stream_filter_append(STDERR, 'CITestStreamFilter');
+        CITestStreamFilter::registration();
+        CITestStreamFilter::addOutputFilter();
+        CITestStreamFilter::addErrorFilter();
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        assert(is_resource($this->streamFilter));
-
-        stream_filter_remove($this->streamFilter);
+        CITestStreamFilter::removeOutputFilter();
+        CITestStreamFilter::removeErrorFilter();
 
         if (is_file(APPPATH . $this->routesFile)) {
             unlink(APPPATH . $this->routesFile);
