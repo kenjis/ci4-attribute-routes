@@ -28,7 +28,7 @@ class SomeController extends BaseController
 ## Installation
 
 ```sh-session
-$ composer require kenjis/ci4-attribute-routes:~0.1.0
+$ composer require kenjis/ci4-attribute-routes
 ```
 
 ## Configuration
