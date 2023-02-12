@@ -6,6 +6,7 @@ namespace Kenjis\CI4\AttributeRoutes;
 
 use CodeIgniter\Autoloader\FileLocator;
 use CodeIgniter\Config\Services;
+use ReflectionClass;
 
 use function is_file;
 
@@ -44,6 +45,11 @@ final class ControllerFinder
                     if ($classnameOrEmpty !== '') {
                         /** @var class-string $classname */
                         $classname = $classnameOrEmpty;
+
+                        $reflection = new ReflectionClass($classname);
+                        if ($reflection->isAbstract()) {
+                            continue;
+                        }
 
                         $classes[] = $classname;
                     }
