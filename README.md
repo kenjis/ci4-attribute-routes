@@ -21,7 +21,7 @@ class SomeController extends BaseController
 
 ## Requirements
 
-- CodeIgniter 4.1.7 or later
+- CodeIgniter 4.3.1 or later
 - Composer
 - PHP 8.0 or later
 
