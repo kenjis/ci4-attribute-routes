@@ -11,10 +11,7 @@ use Tests\Support\Controllers\ResourceController;
  */
 final class RoutePresenterTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    private $name = 'presenter';
+    private string $name = 'presenter';
 
     public function testGetNameAndGetOptions(): void
     {
